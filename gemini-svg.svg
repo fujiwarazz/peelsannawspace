@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <!-- 滤镜：赋予线条纯手工绘制的粗糙感 -->
+    <filter id="hand-drawn" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+
+    <style>
+      .bg { fill: #ffffff; }
+      .stroke-line {
+        fill: none;
+        stroke: #1a1a1a;
+        stroke-width: 3.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#hand-drawn);
+      }
+      .filled-black { fill: #1a1a1a; }
+      .filled-white { fill: #ffffff; }
+
+      /* --- 动画效果 --- */
+      
+      /* 身体上下起伏（走路律动） */
+      @keyframes body-walk {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-4px) rotate(1deg); }
+      }
+      .boy-body-group {
+        animation: body-walk 0.8s infinite ease-in-out;
+        transform-origin: 300px 250px;
+      }
+
+      /* 迈腿动画 */
+      @keyframes leg-swing-1 {
+        0%, 100% { transform: rotate(-15deg); }
+        50% { transform: rotate(20deg); }
+      }
+      @keyframes leg-swing-2 {
+        0%, 100% { transform: rotate(20deg); }
+        50% { transform: rotate(-15deg); }
+      }
+      .leg-1 { animation: leg-swing-1 0.8s infinite ease-in-out; transform-origin: 290px 240px; }
+      .leg-2 { animation: leg-swing-2 0.8s infinite ease-in-out; transform-origin: 315px 240px; }
+
+      /* 西高地小短腿快步走 */
+      @keyframes dog-leg-1 {
+        0%, 100% { transform: rotate(-20deg); }
+        50% { transform: rotate(25deg); }
+      }
+      @keyframes dog-leg-2 {
+        0%, 100% { transform: rotate(25deg); }
+        50% { transform: rotate(-20deg); }
+      }
+      .d-leg-1 { animation: dog-leg-1 0.4s infinite ease-in-out; transform-origin: 515px 285px; }
+      .d-leg-2 { animation: dog-leg-2 0.4s infinite ease-in-out; transform-origin: 545px 285px; }
+
+      /* 西高地身体与尾巴欢快摆动 */
+      @keyframes dog-body {
+        0%, 100% { transform: translateY(0) scaleY(1); }
+        50% { transform: translateY(-3px) scaleY(0.98); }
+      }
+      .dog-body-group {
+        animation: dog-body 0.4s infinite ease-in-out;
+        transform-origin: 530px 270px;
+      }
+      
+      @keyframes tail-wag {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(-15deg); }
+      }
+      .dog-tail {
+        animation: tail-wag 0.2s infinite ease-in-out;
+        transform-origin: 495px 255px;
+      }
+
+      /* 牵狗绳动态拉伸 */
+      @keyframes leash-flex {
+        0%, 100% { d: path("M 330 200 Q 420 230 510 245"); }
+        50% { d: path("M 330 202 Q 420 235 510 247"); }
+      }
+      .leash { animation: leash-flex 0.4s infinite ease-in-out; }
+
+      /* 地面线条向后退，营造前进感 */
+      @keyframes ground-move {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 60; }
+      }
+      .ground {
+        stroke-dasharray: 40 20;
+        animation: ground-move 1s linear infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect class="bg" width="100%" height="100%" />
+
+  <!-- 地面 -->
+  <line class="stroke-line ground" x1="100" y1="310" x2="700" y2="310" />
+
+  <!-- ==================== 男生角色 ==================== -->
+  <g id="boy">
+    <!-- 后腿 (长裤) -->
+    <g class="leg-2">
+      <path class="stroke-line filled-white" d="M 305 240 L 325 240 L 340 305 L 315 305 Z" />
+      <path class="stroke-line filled-black" d="M 315 305 L 335 305 L 340 310 L 315 310 Z" /> <!-- 鞋 -->
+    </g>
+    
+    <!-- 前腿 (长裤) -->
+    <g class="leg-1">
+      <path class="stroke-line filled-white" d="M 280 240 L 305 240 L 295 305 L 270 305 Z" />
+      <path class="stroke-line filled-black" d="M 270 305 L 290 305 L 295 310 L 270 310 Z" /> <!-- 鞋 -->
+    </g>
+
+    <!-- 身体、头部与背包组合 -->
+    <g class="boy-body-group">
+      <!-- 双肩书包 (背在身后) -->
+      <path class="stroke-line filled-white" d="M 255 160 C 245 160 240 170 240 180 L 245 230 C 245 235 255 240 265 240 L 275 235 L 270 165 Z" />
+      <path class="stroke-line" d="M 240 195 L 268 195" /> <!-- 背包口袋线 -->
+      
+      <!-- 躯干 (短袖T恤) -->
+      <path class="stroke-line filled-white" d="M 270 160 L 320 160 L 315 240 L 275 240 Z" />
+      
+      <!-- 头部与五官 -->
+      <circle class="stroke-line filled-white" cx="305" cy="115" r="25" />
+      <path class="stroke-line filled-black" d="M 285 110 C 285 95 310 90 325 100 C 325 100 330 105 320 110 C 310 110 305 105 300 112 Z" /> <!-- 帅气短发 -->
+      <circle class="filled-black" cx="315" cy="115" r="2.5" /> <!-- 眼睛 -->
+      <path class="stroke-line" d="M 322 125 C 320 128 315 127 313 125" /> <!-- 微笑 -->
+      
+      <!-- 脖子 -->
+      <path class="stroke-line" d="M 298 140 L 298 160" />
+      <path class="stroke-line" d="M 310 140 L 310 160" />
+
+      <!-- 左手臂 (摆动或自然垂下) -->
+      <path class="stroke-line filled-white" d="M 270 160 Q 260 180 255 195" />
+      
+      <!-- 右手臂 (前伸牵狗) -->
+      <path class="stroke-line filled-white" d="M 315 165 Q 330 175 340 195" /> <!-- 袖子 -->
+      <path class="stroke-line" d="M 330 188 L 340 200 L 330 205" /> <!-- 前臂与手 -->
+      
+      <!-- 书包肩带 -->
+      <path class="stroke-line" d="M 270 170 Q 285 185 280 210" />
+    </g>
+  </g>
+
+  <!-- ==================== 西高地白㹴 ==================== -->
+  <g id="dog" class="dog-body-group">
+    <!-- 狗后腿 -->
+    <g class="d-leg-2">
+      <path class="stroke-line filled-white" d="M 500 280 L 515 280 L 510 310 L 495 310 Z" />
+    </g>
+    <g class="d-leg-1">
+      <path class="stroke-line filled-white" d="M 512 280 L 527 280 L 525 310 L 510 310 Z" />
+    </g>
+    
+    <!-- 狗前腿 -->
+    <g class="d-leg-2">
+      <path class="stroke-line filled-white" d="M 540 280 L 555 280 L 550 310 L 535 310 Z" />
+    </g>
+    <g class="d-leg-1">
+      <path class="stroke-line filled-white" d="M 552 280 L 567 280 L 565 310 L 550 310 Z" />
+    </g>
+
+    <!-- 狗尾巴（标志性的西高地胡萝卜尾，竖起） -->
+    <path class="stroke-line filled-white dog-tail" d="M 495 255 Q 480 230 490 220 Q 500 235 502 250 Z" />
+
+    <!-- 狗身体（多毛的躯干特征） -->
+    <path class="stroke-line filled-white" d="M 500 250 C 490 265 495 285 510 285 L 560 285 C 570 285 575 270 570 250 C 550 245 520 245 500 250 Z" />
+    
+    <!-- 狗头部（多毛、圆脸特征） -->
+    <path class="stroke-line filled-white" d="M 555 240 C 550 220 560 200 580 205 C 595 210 600 230 590 245 C 575 255 565 250 555 240 Z" />
+    
+    <!-- 西高地尖尖的耳朵 -->
+    <path class="stroke-line filled-white" d="M 563 210 L 560 190 L 573 200 Z" />
+    <path class="stroke-line filled-white" d="M 575 208 L 578 188 L 585 202 Z" />
+    
+    <!-- 标志性的大胡子/口鼻部与面部五官 -->
+    <path class="stroke-line filled-white" d="M 585 225 C 595 225 600 232 595 240 C 588 245 580 240 580 235 Z" />
+    <circle class="filled-black" cx="592" cy="228" r="3.5" /> <!-- 黑纽扣鼻子 -->
+    <circle class="filled-black" cx="578" cy="218" r="2" /> <!-- 眼睛 -->
+    
+    <!-- 项圈 -->
+    <path class="stroke-line" d="M 556 235 Q 562 245 570 241" stroke="#1a1a1a" stroke-width="4" />
+  </g>
+
+  <!-- ==================== 动态牵狗绳 ==================== -->
+  <!-- 连接男生的手 (330, 200) 到 狗的项圈 (510, 245) -->
+  <path class="stroke-line leash" d="M 330 200 Q 420 230 510 245" />
+
+</svg>

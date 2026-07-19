@@ -1,0 +1,22 @@
+---
+title: "线条动画的乐趣"
+titleEn: "The Joy of Line Animation"
+summary: "如何让一个 SVG 小人随滚动走路前进。How to make an SVG character walk forward as you scroll."
+date: 2026-06-12
+cover: "/covers/post-3.svg"
+tags: ["Animation", "SVG", "GSAP"]
+---
+
+## 会走路的小人
+
+The character walks as you scroll. 用 GSAP ScrollTrigger 把滚动进度映射成横向位移，再用 Framer Motion 做腿部的循环摆动。
+
+## 关键点
+
+- 用 `currentColor` 让描边随主题切换
+- 滚动进度 `0 → 1` 映射到 `translateX`
+- 走路循环与位移相互独立，叠加更自然
+
+## 还有音乐
+
+头顶的 🎵 气泡点一下，就有背景音乐相伴。A little music makes the walk nicer.

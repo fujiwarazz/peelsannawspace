@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme — cream / ink / stroke */
+  --bg-base: 250 249 245;      /* #FAF9F5 cream */
+  --bg-surface: 255 255 255;   /* #FFFFFF */
+  --fg-base: 26 26 26;         /* #1A1A1A ink */
+  --fg-muted: 110 108 100;     /* warm gray */
+  --stroke: 26 26 26;          /* black stroke for line art */
+  --accent: 200 90 60;         /* subtle terracotta (Anthropic-ish) */
+
+  --font-sans: "Inter", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+}
+
+.dark {
+  /* Dark theme — near-black / cream line */
+  --bg-base: 18 18 18;         /* #121212 */
+  --bg-surface: 28 28 28;      /* #1C1C1C */
+  --fg-base: 245 244 238;      /* cream text */
+  --fg-muted: 160 158 150;
+  --stroke: 245 244 238;       /* cream stroke for line art */
+  --accent: 224 122 95;
+}
+
+* {
+  border-color: rgb(var(--stroke) / 0.12);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: rgb(var(--bg-base));
+  color: rgb(var(--fg-base));
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Lenis smooth scroll requirements */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Typewriter caret */
+.caret {
+  display: inline-block;
+  width: 0.06em;
+  margin-left: 0.06em;
+  background-color: currentColor;
+  animation: blink 1s step-end infinite;
+}
+
+/* Selection */
+::selection {
+  background-color: rgb(var(--accent) / 0.25);
+}
+
+/* Brand name — left-to-right breathing shimmer */
+.brand-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--fg-base)) 0%,
+    rgb(var(--fg-base)) 35%,
+    rgb(var(--accent)) 50%,
+    rgb(var(--fg-base)) 65%,
+    rgb(var(--fg-base)) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 150% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: brand-shimmer 4.5s ease-in-out infinite;
+}
+
+@keyframes brand-shimmer {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+/* Clouds — gentle idle floating */
+@keyframes cloud-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+.cloud-float {
+  animation: cloud-float 5.5s ease-in-out infinite;
+}
+
+/* Grass / flowers — wind sway from the base */
+@keyframes grass-sway {
+  0%,
+  100% {
+    transform: rotate(-4.5deg);
+  }
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+.grass-sway {
+  transform-origin: bottom center;
+  animation: grass-sway 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
