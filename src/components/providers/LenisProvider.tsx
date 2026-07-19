@@ -25,6 +25,9 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       smoothWheel: true,
     });
 
+    // expose for programmatic scrolling (e.g. blog locator)
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
     // Bridge Lenis <-> GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -36,6 +39,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
     return () => {
       gsap.ticker.remove(raf);
+      (window as unknown as { lenis?: Lenis }).lenis = undefined;
       lenis.destroy();
     };
   }, []);

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Navbar } from "@/components/nav/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "peelsannaw's space",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <LenisProvider>
             <Navbar />
             {children}
+            <Footer />
           </LenisProvider>
         </ThemeProvider>
       </body>

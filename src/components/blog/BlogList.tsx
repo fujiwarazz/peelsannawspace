@@ -1,10 +1,14 @@
 "use client";
 
 import { BlogRow, type BlogRowData } from "./BlogRow";
+import { BlogLocator } from "./BlogLocator";
 
 export function BlogList({ posts }: { posts: BlogRowData[] }) {
   return (
     <section className="mx-auto max-w-5xl px-5 pb-32 pt-16 sm:px-8">
+      <BlogLocator
+        posts={posts.map((p) => ({ slug: p.slug, title: p.title }))}
+      />
       <div className="mb-16 text-center">
         <h2 className="font-mono text-sm uppercase tracking-[0.3em] text-muted">
           Writing

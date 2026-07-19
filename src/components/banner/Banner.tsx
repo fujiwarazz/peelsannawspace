@@ -24,7 +24,7 @@ export function Banner() {
           className="mt-6 flex flex-col items-center gap-2"
         >
           <p className="text-base font-light text-muted sm:text-lg">
-            Study in UCAS, Muisc, FPS Game, and AI dev
+            Study in UCAS, Music, FPS Gamer, and AI Developer
           </p>
          
         </motion.div>

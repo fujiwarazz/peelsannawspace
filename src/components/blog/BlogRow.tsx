@@ -27,11 +27,12 @@ export function BlogRow({
 
   return (
     <motion.article
+      id={`post-${post.slug}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative"
+      className="relative scroll-mt-24"
     >
       {/* connection node — sits on the central dashed line */}
       <span className="absolute left-1/2 top-1/2 z-10 hidden h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-stroke bg-base md:block" />
